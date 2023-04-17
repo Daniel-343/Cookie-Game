@@ -1,6 +1,6 @@
 @font-face {
   font-family: arcadeclassic;
-  src: url(arcadeclassic.regular.ttf);
+  src: url(fonts/arcadeclassic.regular.ttf);
 }
 body {background-color: rgba(56, 56, 56, 0.922);
 font-size: 40px;

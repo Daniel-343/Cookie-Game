@@ -4,7 +4,7 @@ const CANVAS_WIDTH = (canvas.width = 1400);
 const CANVAS_HEIGHT = (canvas.height = 600);
 
 const cookieImage = new Image();
-cookieImage.src = 'cookie.png';
+cookieImage.src = 'public\\images\\cookie.png';
 let mCookieW = 300;
 let mCookieH = 280;
 let mCookieX = 550;
@@ -49,7 +49,7 @@ mainCookie();
 
 function sCookie() {
   const tempCookie = new Image();
-  tempCookie.src = 'cookie.png';
+  tempCookie.src = 'public\\images\\cookie.png';
   ctx.drawImage(tempCookie, 150, sCookieY, 150, 140);
   sCookieY += 2.5;
   if (sCookieY > 400) {
