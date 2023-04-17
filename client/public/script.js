@@ -38,7 +38,7 @@ canvas.addEventListener('click', function (event) {
   }
 });
 
-function mainCookie(boo) {
+function mainCookie() {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   ctx.drawImage(cookieImage, mCookieX, mCookieY, mCookieW, mCookieH);
   ctx.font = '30px arcadeclassic';
