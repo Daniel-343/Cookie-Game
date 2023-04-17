@@ -8,7 +8,7 @@ color:rgb(255, 255, 255);
 text-align: center;
 font-family: arcadeclassic;
 }
-#canvas1 {
+#gamearea {
   border: 5px solid black;
   background-color: rgb(255, 220, 114);
   position: absolute;
