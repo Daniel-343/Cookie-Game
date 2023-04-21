@@ -14,6 +14,11 @@ body {
   background-color: transparent;
   border-color: transparent; 
   transition: linear 0.05s;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: left;
 }
 #mainCookie:active{
   scale: 1.05;
@@ -22,4 +27,13 @@ body {
   text-align: left;
   margin-left: 1%;
   color: black;
+  float: left;
+}
+#title {
+  color: black;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
 }
