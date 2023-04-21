@@ -1,0 +1,23 @@
+@font-face {
+  font-family: arcadeclassic;
+  src: url(fonts/arcadeclassic.regular.ttf);
+}
+body {
+  background-color: rgba(56, 56, 56, 0.922);
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-family: arcadeclassic;
+}
+main {
+  border: 5px solid black;
+  background-color: rgb(255, 220, 114);
+}
+#mainCookie {
+  background-color: transparent;
+  border-color: transparent; 
+  transition: linear 0.05s;
+}
+#mainCookie:active{
+  scale: 1.05;
+}
