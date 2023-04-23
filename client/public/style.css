@@ -20,24 +20,25 @@ body {
   left: 50%;
   transform: translateX(-50%);
   transform-origin: left;
+  cursor: pointer;
 }
 #mainCookie:active{
   scale: 1.05;
 }
-#fallingCookie {
-  left: calc(80vw * var(--random));
-  top: 0px;
-  scale: 0.5;
+.cookie {
   position: absolute;
-  animation-name: fall;
-  animation-duration: 1s;
-  animation-timing-function: linear;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  background-image: url('images/cookie.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: top 1s linear;
 }
 
-@keyframes fall {
-  0%   {top:0px;}
-  100% {top:1000px;}
-}
 #score {
   text-align: left;
   margin-left: 1%;
