@@ -3,29 +3,72 @@
   src: url(fonts/arcadeclassic.regular.ttf);
 }
 body {
-  background-color: rgba(56, 56, 56, 0.922);
+  background-color: rgb(255, 220, 114);
   font-size: 40px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-align: center;
   font-family: arcadeclassic;
-  height: 100%;
-}
-main {
-  border: 5px solid black;
-  background-color: rgb(255, 220, 114);
-  height: auto;
-  width: auto;
+  height: 180%;
+  overflow: hidden;
 }
 #mainCookie {
   background-color: transparent;
   border-color: transparent; 
   transition: linear 0.05s;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: left;
+  cursor: pointer;
+  scale: 0.5;
 }
 #mainCookie:active{
-  scale: 1.05;
+  scale: 0.55;
 }
+.cookie {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  background-image: url('images/cookie.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: top 1s linear;
+  animation: spin 2s linear infinite;
+  z-index: -1;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #score {
-  text-align: left;
-  margin-left: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 0;
+  left: 0;
   color: black;
+}
+#scoreCookie {
+  width: 55px;
+  height: 50px;
+  margin-right: 10px;
+}
+#title {
+  color: black;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
 }
