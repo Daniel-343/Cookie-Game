@@ -1,2 +1,2 @@
 # Cookie-Game
-Super fun Cilcking cookie game. Download now for free
+This is a clicker/idle type game project inspired by the original Cookie Clicker.
