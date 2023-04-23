@@ -21,9 +21,10 @@ body {
   transform: translateX(-50%);
   transform-origin: left;
   cursor: pointer;
+  scale: 0.5;
 }
 #mainCookie:active{
-  scale: 1.05;
+  scale: 0.55;
 }
 .cookie {
   position: absolute;
@@ -37,6 +38,15 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   transition: top 1s linear;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #score {
