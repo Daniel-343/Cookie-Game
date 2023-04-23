@@ -39,6 +39,7 @@ body {
   background-position: center;
   transition: top 1s linear;
   animation: spin 2s linear infinite;
+  z-index: -1;
 }
 @keyframes spin {
   from {
@@ -50,10 +51,18 @@ body {
 }
 
 #score {
-  text-align: left;
-  margin-left: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 0;
+  left: 0;
   color: black;
-  float: left;
+}
+#scoreCookie {
+  width: 55px;
+  height: 50px;
+  margin-right: 10px;
 }
 #title {
   color: black;
