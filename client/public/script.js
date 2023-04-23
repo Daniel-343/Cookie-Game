@@ -6,6 +6,9 @@ let counter = 0;
 
 mainButton.addEventListener('click', function () {
   counter++;
+  score++;
+  scoreDisplay.innerHTML = '';
+  scoreDisplay.insertAdjacentHTML('afterbegin', `score: ${score}`);
   const cookie = document.createElement('div');
   cookie.classList.add('cookie');
   cookie.style.left = `${Math.random() * window.innerWidth}px`;
