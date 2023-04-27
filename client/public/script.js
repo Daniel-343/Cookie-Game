@@ -1,7 +1,7 @@
 const mainButton = document.getElementById('mainCookie');
 const scoreDisplay = document.getElementById('score');
 const shop = document.getElementById('shop');
-const closeButton = document.getElementById('x');
+const shopcontainer = document.getElementById('shopcontainer');
 const shopMenu = document.getElementById('shopmenu');
 let score = 0;
 scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
@@ -30,6 +30,12 @@ mainButton.addEventListener('click', function () {
 });
 
 shop.addEventListener('click', function () {
-
+  // Add unique ID for closeButton element
+  if (shopcontainer.innerHTML === ''){
+    shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><p id="closebutton">X</p></div>');
+    const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
+    closeButton.addEventListener('click', function () { // Add event listener for closeButton
+      document.getElementById('shopmenuContent').remove(); // Remove only the menu content
+    });
+  }
 });
-

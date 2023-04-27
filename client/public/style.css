@@ -79,7 +79,7 @@ body {
   left: 0;
   cursor: pointer;
 }
-#shopmenu {
+#shopmenuContent {
   height: 40%;
   width: 15%;
   position: absolute;
@@ -93,7 +93,7 @@ body {
   margin: 10px;
 
 }
-#x {
+#closebutton {
   position: absolute;
   top: 0;
   right: 0;
