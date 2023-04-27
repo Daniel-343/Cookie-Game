@@ -1,5 +1,8 @@
 const mainButton = document.getElementById('mainCookie');
 const scoreDisplay = document.getElementById('score');
+const shop = document.getElementById('shop');
+const closeButton = document.getElementById('x');
+const shopMenu = document.getElementById('shopmenu');
 let score = 0;
 scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
 scoreDisplay.insertAdjacentHTML('beforeend', score);
@@ -26,4 +29,7 @@ mainButton.addEventListener('click', function () {
   console.log(counter);
 });
 
+shop.addEventListener('click', function () {
+
+});
 
