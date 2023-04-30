@@ -1,11 +1,16 @@
 const mainButton = document.getElementById('mainCookie');
 const scoreDisplay = document.getElementById('score');
+const workersDisplay = document.getElementById('workers');
 const shop = document.getElementById('shop');
 const shopcontainer = document.getElementById('shopcontainer');
 const shopMenu = document.getElementById('shopmenu');
+const hireButton = document.getElementById('hire');
 let score = 0;
+let numberOfWorkers = 0;
 scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
 scoreDisplay.insertAdjacentHTML('beforeend', score);
+workersDisplay.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="worker"/> ');
+workersDisplay.insertAdjacentHTML('beforeend', numberOfWorkers);
 let counter = 0;
 
 mainButton.addEventListener('click', function () {
@@ -43,3 +48,4 @@ shop.addEventListener('click', function () {
     });
   }
 });
+

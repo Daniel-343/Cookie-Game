@@ -24,10 +24,10 @@ body {
   scale: 0.5;
 }
 #mainCookie:hover{
-  scale: 0.52;
+  scale: 0.55;
 }
 #mainCookie:active{
-  scale: 0.58;
+  scale: 0.45;
 }
 .cookie {
   position: absolute;
@@ -136,3 +136,17 @@ body {
 #hire:active{
   scale: 1.15;
 }
+#workers {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 0;
+  left: 300px;
+  color: black;
+}
+#worker {
+  margin-top: 5px;
+  width: auto;
+  height: 50px;
+  margin-right: 10px;}
