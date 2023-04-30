@@ -5,11 +5,12 @@ const shop = document.getElementById('shop');
 const shopcontainer = document.getElementById('shopcontainer');
 const shopMenu = document.getElementById('shopmenu');
 
-let score = 0;
+let workerPrice = 100;
+
+let score = 500;
 let numberOfWorkers = 0;
 refreshScore();
-workersDisplay.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="worker"/> ');
-workersDisplay.insertAdjacentHTML('beforeend', numberOfWorkers);
+refreshWorkers();
 let counter = 0;
 
 mainButton.addEventListener('click', function () {
@@ -40,7 +41,10 @@ shop.addEventListener('click', function () {
     const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
     const shopmenuContent = document.getElementById('shopmenuContent');
     shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">upgrade</p>');
-    shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/> ');
+    shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/>');
+    shopmenuContent.insertAdjacentHTML('beforeend',
+     `<div id="costContainer"><img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p></div>`);
+
     shopmenuContent.insertAdjacentHTML('beforeend', '<button id="hire">hire</button>');
     const hireButton = document.getElementById('hire');
     closeButton.addEventListener('click', function () { // Add event listener for closeButton
@@ -59,13 +63,25 @@ function refreshScore(){
 
 function hireWorkers(hireButton){
   hireButton.addEventListener('click', function(){
-    if (score > 99){
+    if (score > workerPrice){
       score -= 100;
       numberOfWorkers++;
-      workersDisplay.innerHTML = '';
-      workersDisplay.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="worker"/> ');
-      workersDisplay.insertAdjacentHTML('beforeend', numberOfWorkers);
+      refreshWorkers();
       refreshScore();
+      workerPrice += 50;
+      refreshCost();
     }
   });
+}
+
+function refreshWorkers(){
+  workersDisplay.innerHTML = '';
+  workersDisplay.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="worker"/> ');
+  workersDisplay.insertAdjacentHTML('beforeend', numberOfWorkers);
+}
+
+function refreshCost(){
+  const costContainer = document.getElementById('costContainer');
+costContainer.innerHTML = '';
+costContainer.insertAdjacentHTML('beforeend', `<img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p>`);
 }

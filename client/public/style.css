@@ -66,6 +66,12 @@ body {
   width: 55px;
   height: 50px;
   margin-right: 10px;
+  display: inline-block;
+}
+#costCookie {
+  width: 55px;
+  height: 50px;
+  display: inline-block;
 }
 #title {
   color: black;
@@ -83,7 +89,7 @@ body {
   cursor: pointer;
 }
 #shopmenuContent {
-  height: 50%;
+  height: 60%;
   width: 25%;
   position: absolute;
   bottom: 25%;
@@ -123,12 +129,15 @@ body {
   margin-right: auto;
 }
 #hire {
-  margin-top: 25px;
+
   font-size: 35px;
   font-family: arcadeclassic;
   background-color: rgb(255, 220, 114);
   border-radius: 5px;
   cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 #hire:hover{
   scale: 1.05;
@@ -150,3 +159,13 @@ body {
   width: auto;
   height: 50px;
   margin-right: 10px;}
+#costOfWorker {
+  display: inline-block;
+
+}
+#costContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
