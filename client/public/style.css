@@ -23,8 +23,11 @@ body {
   cursor: pointer;
   scale: 0.5;
 }
+#mainCookie:hover{
+  scale: 0.52;
+}
 #mainCookie:active{
-  scale: 0.55;
+  scale: 0.58;
 }
 .cookie {
   position: absolute;
@@ -80,17 +83,16 @@ body {
   cursor: pointer;
 }
 #shopmenuContent {
-  height: 40%;
-  width: 15%;
+  height: 50%;
+  width: 25%;
   position: absolute;
-  bottom: 35%;
-  left: 0;
+  bottom: 25%;
+  left:calc(50vw - (25%/2));
   border-color: black;
   background-color: grey;
   border-style: solid;
   border-width: 6px;
   border-radius: 10px;
-  margin: 10px;
 
 }
 #closebutton {
@@ -100,4 +102,37 @@ body {
   margin-top: 5px;
   margin-right: 10px;
   cursor: pointer;
+  font-size: 35px;
+  font-family: arcadeclassic;
+  background-color: rgb(255, 220, 114);
+  border-radius: 5px;
+}
+#closebutton:hover{
+  scale: 1.05;
+}
+#closebutton:active{
+  scale: 1.15;
+}
+#cook {
+  width: 40px;
+  height: auto;
+  align-items: center;
+  display: block;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#hire {
+  margin-top: 25px;
+  font-size: 35px;
+  font-family: arcadeclassic;
+  background-color: rgb(255, 220, 114);
+  border-radius: 5px;
+  cursor: pointer;
+}
+#hire:hover{
+  scale: 1.05;
+}
+#hire:active{
+  scale: 1.15;
 }

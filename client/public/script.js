@@ -32,8 +32,12 @@ mainButton.addEventListener('click', function () {
 shop.addEventListener('click', function () {
   // Add unique ID for closeButton element
   if (shopcontainer.innerHTML === ''){
-    shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><p id="closebutton">X</p></div>');
+    shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><button id="closebutton">X</button></div>');
     const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
+    const shopmenuContent = document.getElementById('shopmenuContent');
+    shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">upgrade</p>');
+    shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/> ');
+    shopmenuContent.insertAdjacentHTML('beforeend', '<button id="hire">hire</button>');
     closeButton.addEventListener('click', function () { // Add event listener for closeButton
       document.getElementById('shopmenuContent').remove(); // Remove only the menu content
     });
