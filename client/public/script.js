@@ -43,7 +43,7 @@ shop.addEventListener('click', function () {
     shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">upgrade</p>');
     shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/>');
     shopmenuContent.insertAdjacentHTML('beforeend',
-     `<div id="costContainer"><img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p></div>`);
+      `<div id="costContainer"><img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p></div>`);
 
     shopmenuContent.insertAdjacentHTML('beforeend', '<button id="hire">hire</button>');
     const hireButton = document.getElementById('hire');
@@ -70,7 +70,6 @@ function hireWorkers(hireButton){
       refreshScore();
       workerPrice += 50;
       refreshCost();
-      incrementScore();
     }
   });
 }
@@ -83,16 +82,14 @@ function refreshWorkers(){
 
 function refreshCost(){
   const costContainer = document.getElementById('costContainer');
-costContainer.innerHTML = '';
-costContainer.insertAdjacentHTML('beforeend', `<img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p>`);
+  costContainer.innerHTML = '';
+  costContainer.insertAdjacentHTML('beforeend', `<img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p>`);
 }
 
 
 function incrementScore() {
-  if (numberOfWorkers > 0) {
-    score += numberOfWorkers;
-    refreshScore();
-    setTimeout(incrementScore, 5000);
-  }
+  score += numberOfWorkers;
+  refreshScore();
+  setTimeout(incrementScore, 1000);
 }
-
+incrementScore();
