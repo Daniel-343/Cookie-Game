@@ -70,6 +70,7 @@ function hireWorkers(hireButton){
       refreshScore();
       workerPrice += 50;
       refreshCost();
+      incrementScore();
     }
   });
 }
@@ -85,3 +86,13 @@ function refreshCost(){
 costContainer.innerHTML = '';
 costContainer.insertAdjacentHTML('beforeend', `<img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p>`);
 }
+
+
+function incrementScore() {
+  if (numberOfWorkers > 0) {
+    score += numberOfWorkers;
+    refreshScore();
+    setTimeout(incrementScore, 5000);
+  }
+}
+
