@@ -4,11 +4,10 @@ const workersDisplay = document.getElementById('workers');
 const shop = document.getElementById('shop');
 const shopcontainer = document.getElementById('shopcontainer');
 const shopMenu = document.getElementById('shopmenu');
-const hireButton = document.getElementById('hire');
+
 let score = 0;
 let numberOfWorkers = 0;
-scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
-scoreDisplay.insertAdjacentHTML('beforeend', score);
+refreshScore();
 workersDisplay.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="worker"/> ');
 workersDisplay.insertAdjacentHTML('beforeend', numberOfWorkers);
 let counter = 0;
@@ -43,9 +42,30 @@ shop.addEventListener('click', function () {
     shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">upgrade</p>');
     shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/> ');
     shopmenuContent.insertAdjacentHTML('beforeend', '<button id="hire">hire</button>');
+    const hireButton = document.getElementById('hire');
     closeButton.addEventListener('click', function () { // Add event listener for closeButton
       document.getElementById('shopmenuContent').remove(); // Remove only the menu content
     });
+    hireWorkers(hireButton);
   }
 });
 
+function refreshScore(){
+  scoreDisplay.innerHTML = '';
+  scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
+  scoreDisplay.insertAdjacentHTML('beforeend', score);
+}
+
+
+function hireWorkers(hireButton){
+  hireButton.addEventListener('click', function(){
+    if (score > 99){
+      score -= 100;
+      numberOfWorkers++;
+      workersDisplay.innerHTML = '';
+      workersDisplay.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="worker"/> ');
+      workersDisplay.insertAdjacentHTML('beforeend', numberOfWorkers);
+      refreshScore();
+    }
+  });
+}
