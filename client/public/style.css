@@ -169,3 +169,15 @@ body {
   justify-content: center;
   height: 80px;
 }
+#upgradesButton {
+  color: black;
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+}
+#upgradesButton:hover{
+ font-size: 45px;
+ cursor: pointer;
+}

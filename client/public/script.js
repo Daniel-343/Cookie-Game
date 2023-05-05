@@ -7,7 +7,7 @@ const shopMenu = document.getElementById('shopmenu');
 
 let workerPrice = 100;
 
-let score = 500;
+let score = Number(localStorage.getItem('Cscore'));
 let numberOfWorkers = 0;
 refreshScore();
 refreshWorkers();
@@ -16,6 +16,7 @@ let counter = 0;
 mainButton.addEventListener('click', function () {
   counter++;
   score++;
+  localStorage.setItem('Cscore', score);
   scoreDisplay.innerHTML = '';
   scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
   scoreDisplay.insertAdjacentHTML('beforeend', score);
@@ -90,6 +91,20 @@ function refreshCost(){
 function incrementScore() {
   score += numberOfWorkers;
   refreshScore();
+  localStorage.setItem('Cscore', score);
   setTimeout(incrementScore, 1000);
 }
 incrementScore();
+
+const upgradesButton = document.getElementById('upgradesButton');
+upgradesButton.addEventListener('click', function () {
+  // Add unique ID for closeButton element
+  if (shopcontainer.innerHTML === ''){
+    shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><button id="closebutton">X</button></div>');
+    const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
+    const shopmenuContent = document.getElementById('shopmenuContent');
+    closeButton.addEventListener('click', function () { // Add event listener for closeButton
+      document.getElementById('shopmenuContent').remove(); // Remove only the menu content
+    });
+  }
+});
