@@ -73,6 +73,11 @@ body {
   height: 50px;
   display: inline-block;
 }
+#costCookieSmall {
+  width: 45px;
+  height: 40px;
+  display: inline-block;
+}
 #title {
   color: black;
   position: absolute;
@@ -99,7 +104,9 @@ body {
   border-style: solid;
   border-width: 6px;
   border-radius: 10px;
-
+}
+#upgrade{
+  margin-bottom: 10px;
 }
 #closebutton {
   position: absolute;
@@ -169,15 +176,30 @@ body {
   justify-content: center;
   height: 80px;
 }
-#upgradesButton {
+#productionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+#boostButton {
   color: black;
   position: absolute;
   top: 5%;
-  left: 90%;
+  left: 79%;
   transform: translate(-50%, -50%);
   justify-content: center;
 }
-#upgradesButton:hover{
+#boostButton:hover{
  font-size: 45px;
  cursor: pointer;
+}
+#cpm{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  margin-bottom: 20px;
 }

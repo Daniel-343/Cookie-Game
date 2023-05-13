@@ -5,13 +5,16 @@ const shop = document.getElementById('shop');
 const shopcontainer = document.getElementById('shopcontainer');
 const shopMenu = document.getElementById('shopmenu');
 
-let workerPrice = 100;
+
 
 let score = Number(localStorage.getItem('Cscore'));
-let numberOfWorkers = 0;
+let numberOfWorkers = Number(localStorage.getItem('Wscore'));
+let workerPrice = numberOfWorkers * 50 + 100;
 refreshScore();
 refreshWorkers();
 let counter = 0;
+
+
 
 mainButton.addEventListener('click', function () {
   counter++;
@@ -41,7 +44,9 @@ shop.addEventListener('click', function () {
     shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><button id="closebutton">X</button></div>');
     const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
     const shopmenuContent = document.getElementById('shopmenuContent');
-    shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">upgrade</p>');
+    shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">worker</p>');
+    shopmenuContent.insertAdjacentHTML('beforeend',
+     `<div id="productionContainer"><p id="costOfWorker">makes 1</p><img src="public/images/cookie.png" id="costCookieSmall"/><p id="costOfWorker">/sec</p></div>`);
     shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/>');
     shopmenuContent.insertAdjacentHTML('beforeend',
       `<div id="costContainer"><img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p></div>`);
@@ -65,12 +70,13 @@ function refreshScore(){
 function hireWorkers(hireButton){
   hireButton.addEventListener('click', function(){
     if (score > workerPrice){
-      score -= 100;
+      score -= workerPrice;
       numberOfWorkers++;
       refreshWorkers();
       refreshScore();
       workerPrice += 50;
       refreshCost();
+      localStorage.setItem('Wscore', numberOfWorkers);
     }
   });
 }
@@ -96,8 +102,8 @@ function incrementScore() {
 }
 incrementScore();
 
-const upgradesButton = document.getElementById('upgradesButton');
-upgradesButton.addEventListener('click', function () {
+const boostButton = document.getElementById('boostButton');
+boostButton.addEventListener('click', function () {
   // Add unique ID for closeButton element
   if (shopcontainer.innerHTML === ''){
     shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><button id="closebutton">X</button></div>');
@@ -108,3 +114,27 @@ upgradesButton.addEventListener('click', function () {
     });
   }
 });
+
+//calculating Cookies Per minute (CPM)
+let scores = [];
+function saveScore() {
+  scores.push(score);
+  setTimeout(saveScore, 1000);
+}
+saveScore();
+function calculateScoreIncrement() {
+  scores.length > 2 ? scores.shift() : null;
+  // Calculate the total score increment 
+  let totalIncrement = scores[1] - scores[0];
+  refreshCPM(totalIncrement);
+}
+// Call the function every second
+setInterval(calculateScoreIncrement, 1000);
+
+function refreshCPM(cpm){
+  let cpmElement = document.getElementById('cpm')
+  cpmElement.innerHTML = '';
+  cpmElement.insertAdjacentHTML('afterbegin', '<div>CPM:</div>');
+  cpmElement.insertAdjacentHTML('beforeend', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
+  cpmElement.insertAdjacentHTML('beforeend', cpm);
+}
