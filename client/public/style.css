@@ -117,9 +117,20 @@ body {
   border-width: 6px;
   border-radius: 10px;
 }
+#boostCookie{
+  height : 50%;
+  width: auto;
+}
+#cookieName{
+  margin-top: 20px;
+}
+#cookieMultiplier{
+  margin:0px;
+}
 #upgrade{
   margin-bottom: 10px;
 }
+
 #closebutton {
   position: absolute;
   top: 0;
@@ -147,8 +158,26 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-#hire {
-
+#nextButton,
+#previousButton{
+  width: 25%;
+  font-size: 25px;
+  font-family: arcadeclassic;
+  background-color: rgb(255, 220, 114);
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
+#nextButton:hover, 
+#previousButton:hover{
+  scale: 1.05;
+}
+#nextButton:active, 
+#previousButton:active{
+  scale: 1.15;
+}
+#hire, #upgradeCookieButton {
   font-size: 35px;
   font-family: arcadeclassic;
   background-color: rgb(255, 220, 114);
@@ -158,10 +187,10 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-#hire:hover{
+#hire:hover, #upgradeCookieButton:hover{
   scale: 1.05;
 }
-#hire:active{
+#hire:active, #upgradeCookieButton:active{
   scale: 1.15;
 }
 #workers {

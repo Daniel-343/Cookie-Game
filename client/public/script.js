@@ -5,7 +5,7 @@ const workersDisplay = document.getElementById('workers');
 const shop = document.getElementById('shop');
 const shopcontainer = document.getElementById('shopcontainer');
 const shopMenu = document.getElementById('shopmenu');
-
+const boostButton = document.getElementById('boostButton');
 
 
 let score = Number(localStorage.getItem('Cscore'));
@@ -15,6 +15,7 @@ refreshScore();
 refreshWorkers();
 let counter = 0;
 let chosenCookie = 0;
+let multiplier = 0;
 
 
 mainButton.addEventListener('click', function () {
@@ -103,17 +104,40 @@ function incrementScore() {
 }
 incrementScore();
 
-const boostButton = document.getElementById('boostButton');
+function refreshBoostMenuContent(){
+  shopcontainer.insertAdjacentHTML('beforeend', '<div id="boostmenuContent"><button id="closebutton">X</button></div>');
+  const boostmenuContent = document.getElementById('boostmenuContent');
+  const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
+  boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookieName">${cookies[chosenCookie].name}</div>`);
+  boostmenuContent.insertAdjacentHTML('beforeend', `<img src="${cookies[chosenCookie].imgDir}" id="boostCookie">`);
+  boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookieMultiplier">Multiplier: ${cookies[chosenCookie].multiplier}</div>`);
+  boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookiePrice">Price: ${cookies[chosenCookie].price}</div>`);
+  boostmenuContent.insertAdjacentHTML('beforeend', `<button id="upgradeCookieButton">Upgrade</button>`);
+  boostmenuContent.insertAdjacentHTML('beforeend', `<button id="previousButton">Previous</button>`);
+  boostmenuContent.insertAdjacentHTML('beforeend', `<button id="nextButton">Next</button>`);
+  const nextButton = document.getElementById('nextButton');
+  const previousButton = document.getElementById('previousButton');
+  closeButton.addEventListener('click', function () { // Add event listener for closeButton
+    boostmenuContent.remove(); // Remove only the menu content
+  });
+  nextButton.addEventListener('click', function () { // Add event listener for closeButton
+    chosenCookie < cookies.length-1 ?
+    (boostmenuContent.remove(), // Remove only the menu content
+    chosenCookie++,
+    refreshBoostMenuContent()) : null;
+  });
+  previousButton.addEventListener('click', function () { // Add event listener for closeButton
+    chosenCookie > 0 ?
+    (boostmenuContent.remove(), // Remove only the menu content
+    chosenCookie--,
+    refreshBoostMenuContent()) : null;
+  });
+}
+
+
 boostButton.addEventListener('click', function () {
-  // Add unique ID for closeButton element
   if (shopcontainer.innerHTML === ''){
-    shopcontainer.insertAdjacentHTML('beforeend', '<div id="boostmenuContent"><button id="closebutton">X</button></div>');
-    const boostmenuContent = document.getElementById('boostmenuContent');
-    const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
-    boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookieName">${cookies[chosenCookie].name}</div>`);
-    closeButton.addEventListener('click', function () { // Add event listener for closeButton
-      boostmenuContent.remove(); // Remove only the menu content
-    });
+    refreshBoostMenuContent();
   }
 });
 
