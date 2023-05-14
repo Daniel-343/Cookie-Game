@@ -10,3 +10,4 @@ let cookies = [{
   price : 10000,
   ownIt : false,
 }];
+export default cookies;

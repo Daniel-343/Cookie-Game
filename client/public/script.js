@@ -1,3 +1,4 @@
+import cookies from './cookies.js';
 const mainButton = document.getElementById('mainCookie');
 const scoreDisplay = document.getElementById('score');
 const workersDisplay = document.getElementById('workers');
@@ -13,7 +14,7 @@ let workerPrice = numberOfWorkers * 50 + 100;
 refreshScore();
 refreshWorkers();
 let counter = 0;
-
+let chosenCookie = 0;
 
 
 mainButton.addEventListener('click', function () {
@@ -107,9 +108,11 @@ boostButton.addEventListener('click', function () {
   // Add unique ID for closeButton element
   if (shopcontainer.innerHTML === ''){
     shopcontainer.insertAdjacentHTML('beforeend', '<div id="boostmenuContent"><button id="closebutton">X</button></div>');
+    const boostmenuContent = document.getElementById('boostmenuContent');
     const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
+    boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookieName">${cookies[chosenCookie].name}</div>`);
     closeButton.addEventListener('click', function () { // Add event listener for closeButton
-      document.getElementById('boostmenuContent').remove(); // Remove only the menu content
+      boostmenuContent.remove(); // Remove only the menu content
     });
   }
 });
