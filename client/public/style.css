@@ -105,6 +105,18 @@ body {
   border-width: 6px;
   border-radius: 10px;
 }
+#boostmenuContent {
+  height: 70%;
+  width: 40%;
+  position: absolute;
+  bottom: 15%;
+  left:calc(50vw - (40%/2));
+  border-color: black;
+  background-color: grey;
+  border-style: solid;
+  border-width: 6px;
+  border-radius: 10px;
+}
 #upgrade{
   margin-bottom: 10px;
 }

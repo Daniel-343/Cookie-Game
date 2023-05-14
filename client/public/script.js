@@ -106,11 +106,10 @@ const boostButton = document.getElementById('boostButton');
 boostButton.addEventListener('click', function () {
   // Add unique ID for closeButton element
   if (shopcontainer.innerHTML === ''){
-    shopcontainer.insertAdjacentHTML('beforeend', '<div id="shopmenuContent"><button id="closebutton">X</button></div>');
+    shopcontainer.insertAdjacentHTML('beforeend', '<div id="boostmenuContent"><button id="closebutton">X</button></div>');
     const closeButton = document.getElementById('closebutton'); // Define closeButton after it's added to the DOM
-    const shopmenuContent = document.getElementById('shopmenuContent');
     closeButton.addEventListener('click', function () { // Add event listener for closeButton
-      document.getElementById('shopmenuContent').remove(); // Remove only the menu content
+      document.getElementById('boostmenuContent').remove(); // Remove only the menu content
     });
   }
 });
@@ -129,10 +128,10 @@ function calculateScoreIncrement() {
   refreshCPM(totalIncrement);
 }
 // Call the function every second
-setInterval(calculateScoreIncrement, 1000);
+setInterval(calculateScoreIncrement, 100);
 
 function refreshCPM(cpm){
-  let cpmElement = document.getElementById('cpm')
+  let cpmElement = document.getElementById('cpm');
   cpmElement.innerHTML = '';
   cpmElement.insertAdjacentHTML('afterbegin', '<div>CPM:</div>');
   cpmElement.insertAdjacentHTML('beforeend', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
