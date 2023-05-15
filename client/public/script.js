@@ -15,30 +15,44 @@ refreshScore();
 refreshWorkers();
 let counter = 0;
 let chosenCookie = 0;
-let multiplier = 0;
+let mainCookieIndex = 0;
+let multiplier = 1;
 
+function refreshMainCookie(){
+  let mainCookieContainer = document.getElementById('mainCookieContainer');
+  mainCookieContainer.innerHTML = '';
+  mainCookieContainer.insertAdjacentHTML('beforeend', `    <button id="mainCookie">
+  <img src="${cookies[chosenCookie].imgDir}"/>
+</button>`);
+  mainButtonEvent();
+}
 
-mainButton.addEventListener('click', function () {
-  counter++;
-  score++;
-  localStorage.setItem('Cscore', score);
-  scoreDisplay.innerHTML = '';
-  scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
-  scoreDisplay.insertAdjacentHTML('beforeend', score);
-  const cookie = document.createElement('div');
-  cookie.classList.add('cookie');
-  cookie.style.left = `${Math.random() * window.innerWidth}px`;
-  document.body.appendChild(cookie);
-  setTimeout(() => {
-    cookie.style.top = `${window.innerHeight + 50}px`;
+function mainButtonEvent(){
+  const mainButton = document.getElementById('mainCookie');
+  mainButton.addEventListener('click', function () {
+    counter++;
+    score+= 1000 * multiplier;
+    localStorage.setItem('Cscore', score);
+    scoreDisplay.innerHTML = '';
+    scoreDisplay.insertAdjacentHTML('afterbegin', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
+    scoreDisplay.insertAdjacentHTML('beforeend', score);
+    const cookie = document.createElement('div');
+    cookie.classList.add('cookie');
+    cookie.style.left = `${Math.random() * window.innerWidth}px`;
+    cookie.style.backgroundImage = `url(${cookies[mainCookieIndex].imgDir})`; 
+    document.body.appendChild(cookie);
     setTimeout(() => {
-      document.body.removeChild(cookie);
-      counter--;
-    }, 1000);
-  }, 100);
+      cookie.style.top = `${window.innerHeight + 50}px`;
+      setTimeout(() => {
+        document.body.removeChild(cookie);
+        counter--;
+      }, 1000);
+    }, 100);
 
-  console.log(counter);
-});
+    console.log(counter);
+  });
+}
+mainButtonEvent();
 
 shop.addEventListener('click', function () {
   // Add unique ID for closeButton element
@@ -48,7 +62,7 @@ shop.addEventListener('click', function () {
     const shopmenuContent = document.getElementById('shopmenuContent');
     shopmenuContent.insertAdjacentHTML('beforeend', '<p id="upgrade">worker</p>');
     shopmenuContent.insertAdjacentHTML('beforeend',
-     `<div id="productionContainer"><p id="costOfWorker">makes 1</p><img src="public/images/cookie.png" id="costCookieSmall"/><p id="costOfWorker">/sec</p></div>`);
+      '<div id="productionContainer"><p id="costOfWorker">makes 1</p><img src="public/images/cookie.png" id="costCookieSmall"/><p id="costOfWorker">/sec</p></div>');
     shopmenuContent.insertAdjacentHTML('beforeend', '<img src="public/images/cook.png" id="cook"/>');
     shopmenuContent.insertAdjacentHTML('beforeend',
       `<div id="costContainer"><img src="public/images/cookie.png" id="costCookie"/><p id="costOfWorker">${workerPrice}</p></div>`);
@@ -112,25 +126,38 @@ function refreshBoostMenuContent(){
   boostmenuContent.insertAdjacentHTML('beforeend', `<img src="${cookies[chosenCookie].imgDir}" id="boostCookie">`);
   boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookieMultiplier">Multiplier: ${cookies[chosenCookie].multiplier}</div>`);
   boostmenuContent.insertAdjacentHTML('beforeend', `<div id="cookiePrice">Price: ${cookies[chosenCookie].price}</div>`);
-  boostmenuContent.insertAdjacentHTML('beforeend', `<button id="upgradeCookieButton">Upgrade</button>`);
-  boostmenuContent.insertAdjacentHTML('beforeend', `<button id="previousButton">Previous</button>`);
-  boostmenuContent.insertAdjacentHTML('beforeend', `<button id="nextButton">Next</button>`);
+  boostmenuContent.insertAdjacentHTML('beforeend', '<button id="upgradeCookieButton">Upgrade</button>');
+  boostmenuContent.insertAdjacentHTML('beforeend', '<button id="previousButton">Previous</button>');
+  boostmenuContent.insertAdjacentHTML('beforeend', '<button id="nextButton">Next</button>');
   const nextButton = document.getElementById('nextButton');
   const previousButton = document.getElementById('previousButton');
+  const upgradecookieButton = document.getElementById('upgradeCookieButton');
   closeButton.addEventListener('click', function () { // Add event listener for closeButton
     boostmenuContent.remove(); // Remove only the menu content
   });
   nextButton.addEventListener('click', function () { // Add event listener for closeButton
-    chosenCookie < cookies.length-1 ?
-    (boostmenuContent.remove(), // Remove only the menu content
-    chosenCookie++,
-    refreshBoostMenuContent()) : null;
+    chosenCookie < cookies.length - 1 ?
+      (boostmenuContent.remove(), // Remove only the menu content
+      chosenCookie++,
+      refreshBoostMenuContent()) : null;
   });
   previousButton.addEventListener('click', function () { // Add event listener for closeButton
     chosenCookie > 0 ?
-    (boostmenuContent.remove(), // Remove only the menu content
-    chosenCookie--,
-    refreshBoostMenuContent()) : null;
+      (boostmenuContent.remove(), // Remove only the menu content
+      chosenCookie--,
+      refreshBoostMenuContent()) : null;
+  });
+  upgradecookieButton.addEventListener('click', () => {
+    cookies[chosenCookie].ownIt === true ?
+      (mainCookieIndex = chosenCookie,
+      multiplier = cookies[chosenCookie].multiplier,
+      refreshMainCookie()) : 
+      score >= cookies[chosenCookie].price ? 
+        (cookies[chosenCookie].ownIt = true,
+          multiplier = cookies[chosenCookie].multiplier,
+          mainCookieIndex = chosenCookie,
+        score -= cookies[chosenCookie].price,
+        refreshMainCookie()) : null;
   });
 }
 
@@ -142,7 +169,7 @@ boostButton.addEventListener('click', function () {
 });
 
 //calculating Cookies Per minute (CPM)
-let scores = [];
+const scores = [score, score];
 function saveScore() {
   scores.push(score);
   setTimeout(saveScore, 1000);
@@ -150,17 +177,44 @@ function saveScore() {
 saveScore();
 function calculateScoreIncrement() {
   scores.length > 2 ? scores.shift() : null;
-  // Calculate the total score increment 
-  let totalIncrement = scores[1] - scores[0];
+  // Calculate the total score increment
+  const totalIncrement = scores[1] - scores[0];
   refreshCPM(totalIncrement);
 }
-// Call the function every second
+// Call the function every tenth of a second
 setInterval(calculateScoreIncrement, 100);
 
 function refreshCPM(cpm){
-  let cpmElement = document.getElementById('cpm');
+  const cpmElement = document.getElementById('cpm');
   cpmElement.innerHTML = '';
   cpmElement.insertAdjacentHTML('afterbegin', '<div>CPM:</div>');
   cpmElement.insertAdjacentHTML('beforeend', '<img src="public/images/cookie.png" id="scoreCookie"/> ');
   cpmElement.insertAdjacentHTML('beforeend', cpm);
 }
+
+//Tooltip
+
+document.addEventListener('DOMContentLoaded', function() {
+  const container = () => document.getElementById('cpm');
+  const tooltip = () =>document.querySelector('.tooltip');
+
+  container().addEventListener('mouseover', function(e) {
+    tooltip().style.display = 'block';
+    updateTooltipPosition(e);
+  });
+
+  container().addEventListener('mousemove', function(e) {
+    updateTooltipPosition(e);
+  });
+
+  container().addEventListener('mouseout', function() {
+    tooltip().style.display = 'none';
+  });
+
+  function updateTooltipPosition(e) {
+    const x = e.clientX + 10;
+    const y = e.clientY + 10;
+    tooltip().style.left = `${x  }px`;
+    tooltip().style.top = `${y  }px`;
+  }
+});
